@@ -1,0 +1,16 @@
+Package: TransNetDemo
+Type: Package
+Title: An Introduction to Transkingdom Network Analysis
+Version: 1.0
+Depends: R (>= 3.3.1)
+Author: Richard Rodrigues, Natalia Shulzhenko, Andriy Morgun
+Maintainer: Please contact <andriy.morgun@oregonstate.edu>
+Description: An introduction with demo code to transkingdom network analysis.
+License: GPL-3
+LazyData: TRUE
+Imports:
+	stringr (>= 1.1.0),
+        ProNet (>= 1.0.0), 
+        igraph (>= 1.0.1),
+        ggplot2 (>= 2.2.0)
+RoxygenNote: 5.0.1
