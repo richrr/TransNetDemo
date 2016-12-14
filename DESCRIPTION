@@ -9,8 +9,20 @@ Description: An introduction with demo code to transkingdom network analysis.
 License: GPL-3
 LazyData: TRUE
 Imports:
-	stringr (>= 1.1.0),
-        ProNet (>= 1.0.0), 
+        stringi (>= 1.1.2),
+	      stringr (>= 1.1.0),
+        ProNet (>= 1.0.0),
         igraph (>= 1.0.1),
-        ggplot2 (>= 2.2.0)
+        ggplot2 (>= 2.2.0),
+        linkcomm (>= 1.0-11),
+        RColorBrewer (>= 1.1-2),
+        MCL (>= 1.0),
+        Rcpp (>= 0.12.6),
+        Matrix (>= 1.2-6),
+        magrittr (>= 1.5),
+        dynamicTreeCut (>= 1.63-1),
+        tools (>= 3.3.1),
+        expm (>= 0.999-0),
+        grid (>= 3.3.1),
+        lattice (>= 0.20-33)
 RoxygenNote: 5.0.1
