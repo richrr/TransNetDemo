@@ -10,10 +10,11 @@ License: GPL-3
 LazyData: TRUE
 Imports:
         stringi (>= 1.1.2),
-	      stringr (>= 1.1.0),
+	stringr (>= 1.1.0),
         ProNet (>= 1.0.0),
         igraph (>= 1.0.1),
         ggplot2 (>= 2.2.0),
+	gplots (>= 3.0.1),
         linkcomm (>= 1.0-11),
         RColorBrewer (>= 1.1-2),
         MCL (>= 1.0),
