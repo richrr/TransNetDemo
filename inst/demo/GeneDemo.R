@@ -82,7 +82,7 @@ pairs_df = Calc_median_val(Sign_pairs, "Coefficient")
 outNetwork = Puc_compatible_network(pairs_df, genes_df)
 
 # if this returns TRUE, you did everything correct!
-identical(outNetwork, Gene_network_precomputed)
+identical(outNetwork[,c("partner1", "partner2")], Gene_network_precomputed[,c("partner1", "partner2")])
 #write.csv (outNetwork,"gene-networkFile.csv", quote=FALSE)
 
 cluster1 = Identify_subnetworks(outNetwork)

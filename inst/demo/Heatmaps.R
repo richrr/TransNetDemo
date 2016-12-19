@@ -36,6 +36,13 @@ dataset1=genes1[rownames(Sign_genes_precomputed_1), c(hfhs_samples1, ncd_samples
 dim(dataset1)
 heatmap.2(as.matrix(dataset1), col=redgreen(75), ColSideColors=samplecolors, scale="row", key=TRUE, symkey=FALSE, density.info="none", trace="none", cexRow=0.5)
 
+legend("topright",
+       legend = unique(map1$Factor),
+       col = c("magenta" , "blue"),
+       lty= 1,
+       lwd = 5,
+       cex=.7
+)
 
 # microbe files
 microbef1 = system.file("extdata", "microbe_file_1.tsv", package = "TransNetDemo")
@@ -47,3 +54,12 @@ microbes1 = read.delim(microbef1, header=T, check.names = F, row.names=1)
 dataset1=microbes1[rownames(Sign_microbes_precomputed_1), c(hfhs_samples1, ncd_samples1)]
 dim(dataset1)
 heatmap.2(as.matrix(dataset1), col=redgreen(75), ColSideColors=samplecolors, scale="row", key=TRUE, symkey=FALSE, density.info="none", trace="none", cexRow=0.5)
+
+legend("topright",
+       legend = unique(map1$Factor),
+       col = c("magenta" , "blue"),
+       lty= 1,
+       lwd = 5,
+       cex=.7
+)
+

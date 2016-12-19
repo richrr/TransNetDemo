@@ -125,14 +125,22 @@ allPairs = expand.grid(FromNodes,ToNodes)
 myNetwork = TK_Network
 sumAllFractionsForAllNodes = Calc_bipartite_betweeness_centrality(allPairs, FromNodes, myNetwork)
 
-sumAllFractionsForAllNodes
+head(sumAllFractionsForAllNodes)
 
 forPlot = colSums(sumAllFractionsForAllNodes)  # calculate betweeness centrality for the nodes in the columns
 qplot(forPlot,data=as.data.frame(forPlot) ,geom="density")
 
 
 TK_Network = set_vertex_attr(TK_Network, "type", index = nodes$Id, as.factor(nodes$Group))
-plot(TK_Network, vertex.label = NA, layout=layout_as_tree, vertex.color=c( "pink", "skyblue")[1+(V(TK_Network)$type==1)])
+plot(TK_Network, vertex.label = NA, layout=layout_as_tree, vertex.color=c( "pink", "skyblue")[1+(V(TK_Network)$type==1)], vertex.size=4)
+legend("topright",
+       legend = unique(nodes$Group),
+       col = c("skyblue" , "pink"),
+       lty= 1,
+       lwd = 5,
+       cex=.7
+)
+
 
 
 # plot in two rows
