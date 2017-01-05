@@ -78,6 +78,7 @@ identical(rownames(Sign_pairs), rownames(Sign_genepairs_metaanalysis_precomputed
 
 
 genes_df = Calc_median_val(Sign_genes, foldchVar)
+identical(genes_df, Gene_df_precomputed)
 pairs_df = Calc_median_val(Sign_pairs, "Coefficient")
 outNetwork = Puc_compatible_network(pairs_df, genes_df)
 

@@ -78,6 +78,7 @@ identical(rownames(Sign_pairs), rownames(Sign_microbepairs_metaanalysis_precompu
 
 
 microbes_df = Calc_median_val(Sign_microbes, foldchVar)
+identical(microbes_df, Microbe_df_precomputed)
 pairs_df = Calc_median_val(Sign_pairs, "Coefficient")
 outNetwork = Puc_compatible_network(pairs_df, microbes_df)
 

@@ -51,28 +51,15 @@ Sign_pairs = Apply_sign_cutoffs(comb_in_df,individualPvalueCutoff, combinedPvalu
 # if this returns TRUE, you did everything correct!
 identical(Sign_pairs, Sign_gene_microbe_pairs_metaanalysis_precomputed)
 #write.csv (Sign_pairs,"Sign_gene_microbes_pairs_File.csv", quote=FALSE)
-#write.csv (Sign_pairs,"gene_microbe-networkFile.csv", quote=FALSE)
 ######### ######### ######### #########
 
-
+genes_df = rbind(Gene_df_precomputed, Microbe_df_precomputed)
 pairs_df = Calc_median_val(Sign_pairs, "Coefficient")
+outNetwork = Puc_compatible_network(pairs_df, genes_df)
+#write.csv (outNetwork,"gene_microbe-networkFile.csv", quote=FALSE)
 
-#change out format to partner1 partner2 for PUC
-row_names_pairs_df = rownames(pairs_df)
-head(row_names_pairs_df)
-pair = stringr::str_split( row_names_pairs_df ,"<==>")
-pairs = t(as.data.frame(pair))
 
-colnames(pairs) = c("partner1","partner2")
-rownames(pairs) = row_names_pairs_df
-outForPUC = cbind(pairs,pairs_df)
-head(outForPUC)
-
-dfNetwork = outForPUC[,c("partner1", "partner2")]
-head(dfNetwork)
-
-g = graph_from_data_frame(dfNetwork,directed = F, vertices = NULL)
-
+g = graph_from_data_frame(outNetwork,directed = F, vertices = NULL)
 # if this returns TRUE, you did everything correct!
 identical(get.edgelist(g), get.edgelist(Gene_Microbe_network_precomputed))
 #write_graph(g, "gene_microbe_edges.txt", "ncol")
