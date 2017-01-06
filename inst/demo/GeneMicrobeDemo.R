@@ -93,7 +93,7 @@ identical(get.edgelist(TK_Network), get.edgelist(TK_Network_precomputed))
 nodes = data.frame()
 for (vertex in V(TK_Network)) {
   Name = V(TK_Network)$name[vertex]
-  Id = vertex-1
+  Id = vertex
   Group = ""
   if(Name %in% as.vector(net1)){
     Group = "gene"
@@ -106,20 +106,39 @@ colnames(nodes)
 #write.table(nodes, "Trans_Kingdom_NetworkFile_nodes.txt", quote=F, row.names = F, sep=' ', col.names = T)
 
 # calc bipartite betweenness centrality
-FromNodes = as.numeric(nodes[nodes[,3]=="gene",2])
-ToNodes = as.numeric(nodes[nodes[,3]=="microbe",2])
+# to find important genes
+#FromNodes = as.numeric(nodes[nodes[,3]=="gene",2])
+#ToNodes = as.numeric(nodes[nodes[,3]=="microbe",2])
+
+# to find important microbes
+FromNodes = as.numeric(nodes[nodes[,3]=="microbe",2])
+ToNodes = as.numeric(nodes[nodes[,3]=="gene",2])
+
 allPairs = expand.grid(FromNodes,ToNodes)
 myNetwork = TK_Network
 sumAllFractionsForAllNodes = Calc_bipartite_betweeness_centrality(allPairs, FromNodes, myNetwork)
 
 head(sumAllFractionsForAllNodes)
 
-forPlot = colSums(sumAllFractionsForAllNodes)  # calculate betweeness centrality for the nodes in the columns
-qplot(forPlot,data=as.data.frame(forPlot) ,geom="density")
+# calculate node(s) with max. betweeness centrality
+forPlot = colSums(sumAllFractionsForAllNodes)
+topThree = sort(forPlot, decreasing = T)[1:3]
+TopNode = as.integer(names(topThree[1]))
 
+TopNodeName = nodes[TopNode, "Name"]
 
 TK_Network = set_vertex_attr(TK_Network, "type", index = nodes$Id, as.factor(nodes$Group))
-plot(TK_Network, vertex.label = NA, layout=layout_as_tree, vertex.color=c( "pink", "skyblue")[1+(V(TK_Network)$type==1)], vertex.size=4)
+# no labels
+#plot(TK_Network, vertex.label = NA, layout=layout_as_tree, vertex.color=c( "pink", "skyblue")[1+(V(TK_Network)$type==1)], vertex.size=4)
+
+# label only the important node
+plot(TK_Network, vertex.label = ifelse(V(TK_Network)$name==TopNodeName, V(TK_Network)$name, NA),
+     layout=layout_as_tree, vertex.color=c( "pink", "skyblue")[1+(V(TK_Network)$type==1)], vertex.size=4, vertex.label.dist=0.15, vertex.label.cex = 0.7)
+
+# label only the microbe nodes
+#plot(TK_Network, vertex.label = ifelse(nodes[which(nodes$Name==V(TK_Network)$name), "Group"]=='microbe', V(TK_Network)$name, NA),
+#      layout=layout_as_tree, vertex.color=c( "pink", "skyblue")[1+(V(TK_Network)$type==1)], vertex.size=4, vertex.label.dist=0.15, vertex.label.cex = 0.4)
+
 legend("topright",
        legend = unique(nodes$Group),
        col = c("skyblue" , "pink"),
