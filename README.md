@@ -2,7 +2,7 @@
 R package for an introduction to transkingdom network analysis
 
 
-# July 1 2021:
+July 1 2021:
 Since ProNet is no longer available on CRAN, please follow the below steps to install TransNetDemo:
 
 - Download zipped code folder from https://github.com/richrr/TransNetDemo and unzip, place in the user’s local home folder
