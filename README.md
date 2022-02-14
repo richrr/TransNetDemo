@@ -9,6 +9,8 @@ R package for an introduction to transkingdom network analysis
 Version of this package made for R < 4.0 is no longer supported. 
 
 Please update to R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+> install_github("cran/ProNet")
+
 > install_github("richrr/TransNetDemo")
 
 
