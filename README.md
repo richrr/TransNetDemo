@@ -2,26 +2,29 @@
 R package for an introduction to transkingdom network analysis
 
 
-install.packages("devtools")
-library(devtools)
+> install.packages("devtools")
 
-# version of this package made for R < 4.0 is no longer supported. Please update to R version 4.1.2 (2021-11-01) -- "Bird Hippie"
-install_github("richrr/TransNetDemo")
+> library(devtools)
+
+Version of this package made for R < 4.0 is no longer supported. 
+
+Please update to R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+> install_github("richrr/TransNetDemo")
 
 
 Feb 14 2022:
+If the above does not work, please try the following:
+- download https://github.com/richrr/TransNetDemo/archive/refs/heads/master.zip
+- unzip
+- Delete the line with ProNet (if it exists) and save the file “DESCRIPTION”
+> devtools::install("~/Desktop/TransNetDemo-master/")
 
-# download https://github.com/richrr/TransNetDemo/archive/refs/heads/master.zip
-# unzip
-# Delete the line with ProNet (if it exists) and save the file “DESCRIPTION”
-devtools::install("~/Desktop/TransNetDemo-master/")
+- download https://github.com/cran/ProNet/archive/refs/heads/master.zip
+- unzip
+> devtools::install("~/Desktop/ProNet-master/")
 
-# download https://github.com/cran/ProNet/archive/refs/heads/master.zip
-# unzip
-devtools::install("~/Desktop/ProNet-master/")
-
-library(TransNetDemo)
-library(ProNet)
+> library(TransNetDemo)
+> library(ProNet)
 
 
 July 1 2021:
