@@ -83,8 +83,28 @@ pairs_df = Calc_median_val(Sign_pairs, "Coefficient")
 outNetwork = Puc_compatible_network(pairs_df, microbes_df)
 
 # if this returns TRUE, you did everything correct!
-identical(outNetwork[,c("partner1", "partner2")], Microbe_network_precomputed[,c("partner1", "partner2")])
+#identical(outNetwork[,c("partner1", "partner2")], Microbe_network_precomputed[,c("partner1", "partner2")])
 #write.csv (outNetwork,"microbe-networkFile.csv", quote=FALSE)
+identical(rownames(outNetwork[,c("partner1", "partner2")]), rownames(Microbe_network_precomputed[,c("partner1", "partner2")]))
+dim(outNetwork[,c("partner1", "partner2")])
+dim(Microbe_network_precomputed[,c("partner1", "partner2")])
+
+
+# plot networks
+dfNetwork = outNetwork[,c("partner1", "partner2", "combinedCoefficient")]
+print(head(dfNetwork))
+
+#?graph_from_data_frame
+# http://kateto.net/networks-r-igraph
+g = graph_from_data_frame(dfNetwork,directed = F, vertices = NULL)
+print(g, e=TRUE, v=TRUE)
+# see the edges and vertices
+#E(g) ; V(g) ; edge_attr(g) ; vertex_attr(g)
+
+# plots the networks
+plothis = induced.subgraph(g, V(g))
+#visualization(plothis,node.size=4,node.label=V(g)$name,node.label.color="blue")
+plot(plothis)
 
 cluster1 = Identify_subnetworks(outNetwork)
 summary(cluster1)
