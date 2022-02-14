@@ -127,7 +127,9 @@ TopNode = as.integer(names(topThree[1]))
 
 TopNodeName = nodes[TopNode, "Name"]
 
-TK_Network = set_vertex_attr(TK_Network, "type", index = nodes$Id, as.factor(nodes$Group))
+#TK_Network = set_vertex_attr(TK_Network, "type", index = nodes$Id, as.factor(nodes$Group))
+TK_Network = set_vertex_attr(TK_Network, name="type", index = V(TK_Network), value=as.factor(nodes[V(TK_Network),"Group"]))
+
 # no labels
 #plot(TK_Network, vertex.label = NA, layout=layout_as_tree, vertex.color=c( "pink", "skyblue")[1+(V(TK_Network)$type==1)], vertex.size=4)
 
