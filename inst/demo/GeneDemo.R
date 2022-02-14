@@ -85,9 +85,9 @@ outNetwork = Puc_compatible_network(pairs_df, genes_df)
 # if this returns TRUE, you did everything correct!
 #identical(outNetwork[,c("partner1", "partner2")], Gene_network_precomputed[,c("partner1", "partner2")])
 #write.csv (outNetwork,"gene-networkFile.csv", quote=FALSE)
-identical(rownames(outNetwork[,c("partner1", "partner2")]), rownames(Microbe_network_precomputed[,c("partner1", "partner2")]))
+identical(rownames(outNetwork[,c("partner1", "partner2")]), rownames(Gene_network_precomputed[,c("partner1", "partner2")]))
 dim(outNetwork[,c("partner1", "partner2")])
-dim(Microbe_network_precomputed[,c("partner1", "partner2")])
+dim(Gene_network_precomputed[,c("partner1", "partner2")])
 
 
 # plot networks
@@ -105,6 +105,7 @@ print(g, e=TRUE, v=TRUE)
 plothis = induced.subgraph(g, V(g))
 #visualization(plothis,node.size=4,node.label=V(g)$name,node.label.color="blue")
 plot(plothis)
+
 
 cluster1 = Identify_subnetworks(outNetwork)
 summary(cluster1)
